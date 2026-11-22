@@ -512,13 +512,19 @@
           jainsambhav0343@gmail.com
         </p>
 
-        <!-- Contact form -->
-        <form id="contact-form" class="contact-form">
-          <input type="text" id="cf-name" placeholder="Your name">
-          <input type="text" id="cf-email" placeholder="Your email">
-          <textarea id="cf-message" rows="4" placeholder="Your message"></textarea>
+        <!-- Contact form (novalidate: script.js shows its own messages) -->
+        <form id="contact-form" class="contact-form" novalidate>
+          <label for="cf-name">Your name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" maxlength="60" required>
+
+          <label for="cf-email">Your email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" maxlength="100" required>
+
+          <label for="cf-message">Your message</label>
+          <textarea id="cf-message" name="message" rows="4" maxlength="1000" required></textarea>
+
           <button type="submit" class="button button-primary">Send message</button>
-          <p id="cf-status"></p>
+          <p id="cf-status" role="status" aria-live="polite"></p>
         </form>
 
       </div>

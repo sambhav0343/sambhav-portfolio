@@ -243,28 +243,45 @@ tryAgainButton.addEventListener("click", function () {
 // 5. Contact Form Validation
 // =====================================
 
-document.getElementById("contact-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+const contactForm = document.getElementById("contact-form");
 
-  var name = document.getElementById("cf-name").value;
-  var email = document.getElementById("cf-email").value;
-  var message = document.getElementById("cf-message").value;
-  var status = document.getElementById("cf-status");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  if (name == "" || email == "" || message == "") {
-    status.style.color = "red";
-    status.innerHTML = "Please fill all the fields";
-    return;
-  }
+    const emailInput = document.getElementById("cf-email");
+    const status = document.getElementById("cf-status");
 
-  if (!email.includes("@")) {
-    status.style.color = "red";
-    status.innerHTML = "Please enter a valid email";
-    return;
-  }
+    // trim() so that "   " does not count as filled
+    const name = document.getElementById("cf-name").value.trim();
+    const email = emailInput.value.trim();
+    const message = document.getElementById("cf-message").value.trim();
 
-  status.style.color = "green";
-  status.innerHTML = "Thanks " + name + "! Opening your email app...";
+    function showStatus(text, type) {
+      status.textContent = text;          // textContent: user text is never run as HTML
+      status.className = "is-" + type;
+    }
 
-  window.location.href = "mailto:jainsambhav0343@gmail.com?subject=Message from " + name + "&body=" + message;
-});
+    if (!name || !email || !message) {
+      showStatus("Please fill in all the fields.", "error");
+      return;
+    }
+
+    // type="email" lets the browser check the format
+    if (!emailInput.checkValidity()) {
+      showStatus("Please enter a valid email address.", "error");
+      emailInput.focus();
+      return;
+    }
+
+    showStatus("Thanks " + name + "! Opening your email app...", "success");
+
+    // encodeURIComponent keeps &, ? and spaces from breaking the link
+    const subject = encodeURIComponent("Message from " + name);
+    const body = encodeURIComponent(
+      "Name: " + name + "\nEmail: " + email + "\n\n" + message
+    );
+    window.location.href =
+      "mailto:jainsambhav0343@gmail.com?subject=" + subject + "&body=" + body;
+  });
+}
