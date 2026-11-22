@@ -62,6 +62,7 @@ sambhav-portfolio/
 ├── index.html      # Main HTML file containing all website sections
 ├── style.css       # CSS styles, themes, and responsive design
 ├── script.js       # JavaScript functionality and interactions
+├── favicon.svg     # Browser-tab icon
 ├── screenshots/    # Desktop and phone screenshots used in this README
 ├── LICENSE         # MIT License
 │
