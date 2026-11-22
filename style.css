@@ -753,3 +753,46 @@ nav a:focus-visible {
     flex-direction: column;
   }
 }
+
+/* Contact form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 480px;
+  margin: 28px auto 0;
+  text-align: left;
+}
+
+.contact-form label {
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
+
+/* Visible keyboard focus (this site uses --teal, not --accent) */
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* Status colours as classes so they work in both themes */
+#cf-status {
+  min-height: 1.2em;
+  font-weight: 600;
+}
+
+#cf-status.is-error { color: #e04848; }
+#cf-status.is-success { color: var(--teal); }

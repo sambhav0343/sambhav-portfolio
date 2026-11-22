@@ -237,3 +237,51 @@ tryAgainButton.addEventListener("click", function () {
   quizForm.querySelector('input[name="q1"]').focus();
 
 });
+
+
+// =====================================
+// 5. Contact Form Validation
+// =====================================
+
+const contactForm = document.getElementById("contact-form");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const emailInput = document.getElementById("cf-email");
+    const status = document.getElementById("cf-status");
+
+    // trim() so that "   " does not count as filled
+    const name = document.getElementById("cf-name").value.trim();
+    const email = emailInput.value.trim();
+    const message = document.getElementById("cf-message").value.trim();
+
+    function showStatus(text, type) {
+      status.textContent = text;          // textContent: user text is never run as HTML
+      status.className = "is-" + type;
+    }
+
+    if (!name || !email || !message) {
+      showStatus("Please fill in all the fields.", "error");
+      return;
+    }
+
+    // type="email" lets the browser check the format
+    if (!emailInput.checkValidity()) {
+      showStatus("Please enter a valid email address.", "error");
+      emailInput.focus();
+      return;
+    }
+
+    showStatus("Thanks " + name + "! Opening your email app...", "success");
+
+    // encodeURIComponent keeps &, ? and spaces from breaking the link
+    const subject = encodeURIComponent("Message from " + name);
+    const body = encodeURIComponent(
+      "Name: " + name + "\nEmail: " + email + "\n\n" + message
+    );
+    window.location.href =
+      "mailto:jainsambhav0343@gmail.com?subject=" + subject + "&body=" + body;
+  });
+}
