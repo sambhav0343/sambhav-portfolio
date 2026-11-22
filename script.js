@@ -237,3 +237,34 @@ tryAgainButton.addEventListener("click", function () {
   quizForm.querySelector('input[name="q1"]').focus();
 
 });
+
+
+// =====================================
+// 5. Contact Form Validation
+// =====================================
+
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  var name = document.getElementById("cf-name").value;
+  var email = document.getElementById("cf-email").value;
+  var message = document.getElementById("cf-message").value;
+  var status = document.getElementById("cf-status");
+
+  if (name == "" || email == "" || message == "") {
+    status.style.color = "red";
+    status.innerHTML = "Please fill all the fields";
+    return;
+  }
+
+  if (!email.includes("@")) {
+    status.style.color = "red";
+    status.innerHTML = "Please enter a valid email";
+    return;
+  }
+
+  status.style.color = "green";
+  status.innerHTML = "Thanks " + name + "! Opening your email app...";
+
+  window.location.href = "mailto:jainsambhav0343@gmail.com?subject=Message from " + name + "&body=" + message;
+});
