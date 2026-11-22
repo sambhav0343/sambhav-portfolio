@@ -4,7 +4,7 @@
   --teal: #087d78;        /* darker teal: 4.98:1 on white (was #0f9f98, 3.26:1) */
   --teal-dark: #066560;
   --ink: #183238;
-  --muted: #63777b;
+  --muted: #56696d;        /* was #63777b (4.42:1 on --soft) */
   --line: #e2eceb;
   --soft: #f3f9f8;
   --white: #ffffff;
